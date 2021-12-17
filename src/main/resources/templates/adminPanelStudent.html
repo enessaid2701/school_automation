@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
@@ -457,25 +459,25 @@
     </div>
     <ul class="nav-links">
         <li>
-            <a href="adminPanelTeacher.html">
+            <a th:href="@{'/admin/get-admin-teacher/'}">
                 <i class='bx bx-grid-alt' ></i>
                 <span class="links_name">Öğretmenler</span>
             </a>
         </li>
         <li>
-            <a href="adminPanelStudent.html">
+            <a th:href="@{'/admin/get-admin-student/'}">
                 <i class='bx bx-box' ></i>
                 <span class="links_name">Öğrenciler</span>
             </a>
         </li>
         <li>
-            <a href="adminPanelEmployee.html">
+            <a th:href="@{'/admin/get-admin-employee/'}">
                 <i class='bx bx-list-ul' ></i>
                 <span class="links_name">Personeller</span>
             </a>
         </li>
         <li class="log_out">
-            <a href="#">
+            <a th:href="@{'/admin/logout/'}">
                 <i class='bx bx-log-out'></i>
                 <span class="links_name">Çıkış Yap</span>
             </a>
@@ -493,7 +495,7 @@
             <i class='bx bx-search' ></i>
         </div>-->
         <div class="profile-details">
-            <span class="admin_name">Enes Said Altun</span>
+            <span class="admin_name">Admin</span>
             <i class='bx bx-chevron-down' ></i>
         </div>
     </nav>
@@ -508,19 +510,22 @@
                 <div class="title">Öğrenci Kayıt</div>
                 <div class="sales-details">
                     <ul class="details">
-                        <form>
+                        <form action="#" th:action="@{/student/create}" th:object="${createStudentForm}" method="post">
                             Ad Soyad:
-                            <input type="text" name="name" placeholder="Adı">
+                            <input type="text" name="name" th:field="*{name}" th:value="${createStudentForm.name}" placeholder="Adı">
                             <br>
-                            Branş:
-                            <input type="text" name="branch" placeholder="Branşı">
+                            Sınıf:
+                            <input type="text" name="class" th:field="*{yourClass}" th:value="${createStudentForm.yourClass}"  placeholder="Sınıf">
 
+                            Kullanıcı Adı:
+                            <input type="text" name="name"  th:field="*{userName}" th:value="${createStudentForm.userName}" placeholder="Kullanıcı Adı">
+                            <br>
+                            Şifre:
+                            <input type="password" name="branch" th:field="*{password}"  th:value="${createStudentForm.password}" placeholder="Şifre">
+                            <input type="hidden" name="id" th:field="*{id}" th:value="${createStudentForm.id}">
+                            <button class="button-admin" th:text="${createStudentForm.id eq null} ? 'Kaydet' : 'Güncelle' "></button>
                         </form>
                     </ul>
-
-                </div>
-                <div class="button">
-                    <a href="#">Kaydet</a>
                 </div>
             </div>
             <div class="top-sales box">
@@ -534,16 +539,16 @@
                         <span class="price">Güncelleme</span>
                         <span class="price">Silme</span>
                     </li>
-                    <li>
+                    <li th:each="student : ${studentList}">
                         <a href="#">
-                            <span class="price1">Enes Said Altun</span>
+                            <span class="price1" th:text="${student.name}"></span>
                         </a>
-                        <span class="price1">4A</span>
+                        <span class="price1" th:text="${student.yourClass}"></span>
                         <div class="button-admin">
-                            <a href="#">Güncelle</a>
+                            <a th:href="@{'/student/'+ ${student.id}}">Güncelle</a>
                         </div>
                         <div class="button-admin">
-                            <a href="#">Sil</a>
+                            <a th:href="@{'/student/delete/'+ ${student.id}}" >Sil</a>
                         </div>
                     </li>
                 </ul>

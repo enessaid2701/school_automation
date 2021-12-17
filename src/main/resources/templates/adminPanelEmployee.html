@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
@@ -457,25 +459,25 @@
     </div>
     <ul class="nav-links">
         <li>
-            <a href="adminPanelTeacher.html">
+            <a th:href="@{'/admin/get-admin-teacher/'}">
                 <i class='bx bx-grid-alt' ></i>
                 <span class="links_name">Öğretmenler</span>
             </a>
         </li>
         <li>
-            <a href="adminPanelStudent.html">
+            <a th:href="@{'/admin/get-admin-student/'}">
                 <i class='bx bx-box' ></i>
                 <span class="links_name">Öğrenciler</span>
             </a>
         </li>
         <li>
-            <a href="adminPanelEmployee.html">
+            <a th:href="@{'/admin/get-admin-employee/'}">
                 <i class='bx bx-list-ul' ></i>
                 <span class="links_name">Personeller</span>
             </a>
         </li>
         <li class="log_out">
-            <a href="#">
+            <a th:href="@{'/admin/logout/'}">
                 <i class='bx bx-log-out'></i>
                 <span class="links_name">Çıkış Yap</span>
             </a>
@@ -493,7 +495,7 @@
             <i class='bx bx-search' ></i>
         </div>-->
         <div class="profile-details">
-            <span class="admin_name">Enes Said Altun</span>
+            <span class="admin_name">Admin</span>
             <i class='bx bx-chevron-down' ></i>
         </div>
     </nav>
@@ -508,19 +510,17 @@
                 <div class="title">Personel Kayıt</div>
                 <div class="sales-details">
                     <ul class="details">
-                        <form>
+                        <form action="#" th:action="@{/employee/create}" th:object="${createEmployeeForm}" method="post">
                             Ad Soyad:
-                            <input type="text" name="name" placeholder="Adı">
+                            <input type="text" name="name" th:field="*{name}" placeholder="Adı">
                             <br>
-                            Branş:
-                            <input type="text" name="branch" placeholder="Branşı">
-
+                            Meslek:
+                            <input type="text" name="branch"  th:field="*{job}" placeholder="Meslek">
+                            <input type="hidden" name="id" th:field="*{id}" th:value="${createEmployeeForm.id}">
+                            <button class="button-admin" th:text="${createEmployeeForm.id eq null} ? 'Kaydet' : 'Güncelle' "></button>
                         </form>
                     </ul>
 
-                </div>
-                <div class="button">
-                    <a href="#">Kaydet</a>
                 </div>
             </div>
             <div class="top-sales box">
@@ -534,16 +534,16 @@
                         <span class="price">Güncelleme</span>
                         <span class="price">Silme</span>
                     </li>
-                    <li>
+                    <li th:each="employee : ${employeeList}">
                         <a href="#">
-                            <span class="price1">Mehmet Duman</span>
+                            <span class="price1" th:text="${employee.name}" ></span>
                         </a>
-                        <span class="price1">Hademe</span>
+                        <span class="price1" th:text="${employee.job}"></span>
                         <div class="button-admin">
-                            <a href="#">Güncelle</a>
+                            <a th:href="@{'/employee/'+ ${employee.id}}">Güncelle</a>
                         </div>
                         <div class="button-admin">
-                            <a href="#">Sil</a>
+                            <a th:href="@{'/employee/delete/'+ ${employee.id}}" >Sil</a>
                         </div>
                     </li>
                 </ul>

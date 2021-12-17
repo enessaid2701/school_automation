@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StudentRepository extends CrudRepository<StudentEntity, Long> {
+
+    StudentEntity findStudentEntityByUserName(String userName);
 }

@@ -1,4 +1,4 @@
-package com.school_automation.dto;
+package com.school_automation.form;
 
 public class CreateTeacherForm
 {
@@ -6,6 +6,16 @@ public class CreateTeacherForm
     private String userName;
     private String password;
     private String branch;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    private Long id;
 
     public String getName() {return name;}
 

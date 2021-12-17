@@ -99,7 +99,7 @@
         <h4 class="login-text">Giriş</h4>
         <form action="#" th:action="@{/login}" th:object="${loginForm}" method="post">
             <input type="text" th:field="*{userName}" placeholder="Kullanıcı Adı">
-            <input type="text" th:field="*{password}" placeholder="Şifre">
+            <input type="password" th:field="*{password}" placeholder="Şifre">
             <button  type="submit" class="btn-login">Giriş Yap</button>
         </form>
     </div>

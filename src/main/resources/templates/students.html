@@ -103,27 +103,26 @@
             background-color: #1d4657;
             text-decoration: underline;
         }
-        .copyright {
-            font-size: 14px;
-            color: #c5def4;
-            text-align: center;
-            margin: 5px 0;
+        table{
+            border: 1px;
+            width: 400px;
         }
+
     </style>
 </head>
 <body>
 <header>
     <div class="kutu">
-        <a href="homePage.html" class="logo">Okul Yönetim Sistemi</a>
+        <a class="logo">Okul Yönetim Sistemi</a>
         <ul class="menu">
             <li class="mevcut">
-                <a href="teachers.html">Öğretmenler</a>
+                <a th:href="@{'/teacher'}">Öğretmenler</a>
             </li>
             <li>
-                <a href="students.html">Öğrenciler</a>
+                <a th:href="@{'/student'}">Öğrenciler</a>
             </li>
             <li>
-                <a href="employees.html">Personeller</a>
+                <a th:href="@{'/employee'}">Personeller</a>
             </li>
         </ul>
     </div>
@@ -131,6 +130,16 @@
 <main>
     <div class="kutu">
         <h1>Öğrenciler</h1>
+        <table border=1>
+            <tr>
+                <td>Adı Soyadı</td>
+                <td>Sınıf</td>
+            </tr>
+            <tr th:each="student : ${students}">
+                <td th:text="${student.name}"></td>
+                <td th:text="${student.yourClass}"></td>
+            </tr>
+        </table>
     </div>
 </main>
 </body>

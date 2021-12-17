@@ -110,16 +110,16 @@
 <body>
 <header>
     <div class="kutu">
-        <a href="homePage.html" class="logo">Okul Yönetim Sistemi</a>
+        <a class="logo">Okul Yönetim Sistemi</a>
         <ul class="menu">
             <li class="mevcut">
-                <a href="teachers.html">Öğretmenler</a>
+                <a th:href="@{'/teacher'}">Öğretmenler</a>
             </li>
             <li>
-                <a href="students.html">Öğrenciler</a>
+                <a th:href="@{'/student'}">Öğrenciler</a>
             </li>
             <li>
-                <a href="employees.html">Personeller</a>
+                <a th:href="@{'/employee'}">Personeller</a>
             </li>
         </ul>
     </div>
@@ -127,7 +127,7 @@
 <main>
     <div class="kutu">
         <h1></h1>
-        <img src="student.jpg" class="foto" />
+        <img src="/jpg/student.jpg" class="foto" />
         <h2>Nedir Okul Otomasyonu</h2>
         <p>Okul Otomasyon Sistemi, okul içerisinde kullanılan bütün programları tek çatı altında toplayan, esnek ve işlevsel bir eğitim yazılımıdır. Kullanıcıları idareciler, öğretmenler, öğrenciler ve velilerdir. Muhasebeden, öğrenci işlerine; okul içi iletişimden ölçme-değerlendirmeye kadar tüm yazılımları tümleşik şekilde yönetmeyi sağlar.</p>
         <p>.</p>
@@ -135,7 +135,7 @@
         <p>.</p>
         <p>.</p>
         <p>.</p>
-        <img src="okulaile.jpg" class="foto" />
+        <img src="/jpg/okulaile.jpg" class="foto" />
         <h3>Okul Otomasyonu Yazılımı Kullanmak İçin 5 Neden</h3>
         <p>1.Okul Yazılımı İdari İşleri Otomatikleştirir</p>
         <p>2.Okul Yazılımları Eğitim Kurumlarının İletişimini Kurumsallaştırır</p>

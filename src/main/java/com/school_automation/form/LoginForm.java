@@ -1,7 +1,5 @@
 package com.school_automation.form;
 
-
-
 public class LoginForm {
 
     private String userName;

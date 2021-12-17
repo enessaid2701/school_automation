@@ -1,5 +1,7 @@
 package com.school_automation.entity;
 
+import com.school_automation.dto.TeacherDTO;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -39,6 +41,15 @@ public class TeacherEntity extends BaseEntity
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+
+    public TeacherDTO toDTO(){
+        return TeacherDTO.builder()
+                .branch(this.getBranch())
+                .id(this.getId())
+                .name(this.getName())
+                .build();
     }
 
 
